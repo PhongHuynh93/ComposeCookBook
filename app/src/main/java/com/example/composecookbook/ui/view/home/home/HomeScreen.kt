@@ -1,5 +1,6 @@
 package com.example.composecookbook.ui.view.home.home
 
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,11 +13,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composecookbook.data.DemoDataProvider
 import com.example.composecookbook.data.model.HomeScreenItems
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
+import com.example.composecookbook.ui.view.listview.ListViewActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -54,8 +57,9 @@ fun HomeScreenContent() {
 
 @Composable
 fun HomeScreenListView(homeScreenItems: HomeScreenItems) {
+    val context = LocalContext.current
     Button(
-        onClick = { /*TODO*/ },
+        onClick = { homeItemClicked(context, homeScreenItems) },
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
@@ -66,6 +70,29 @@ fun HomeScreenListView(homeScreenItems: HomeScreenItems) {
                 .padding(8.dp)
         )
     }
+}
+
+fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
+    val intent = when (homeScreenItems) {
+        is HomeScreenItems.ListView -> {
+            ListViewActivity.newIntent(context)
+        }
+        HomeScreenItems.AdvanceLists -> TODO()
+        HomeScreenItems.AndroidViews -> TODO()
+        HomeScreenItems.BottomAppBar -> TODO()
+        HomeScreenItems.BottomSheets -> TODO()
+        HomeScreenItems.Carousel -> TODO()
+        HomeScreenItems.CollapsingAppBar -> TODO()
+        HomeScreenItems.ConstraintsLayout -> TODO()
+        HomeScreenItems.CustomFling -> TODO()
+        HomeScreenItems.Dialogs -> TODO()
+        HomeScreenItems.Layouts -> TODO()
+        HomeScreenItems.Modifiers -> TODO()
+        HomeScreenItems.MotionLayout -> TODO()
+        HomeScreenItems.PullRefresh -> TODO()
+        HomeScreenItems.TabLayout -> TODO()
+    }
+    context.startActivity(intent)
 }
 
 @Preview
