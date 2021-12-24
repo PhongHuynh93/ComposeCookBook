@@ -3,14 +3,20 @@ package com.example.composecookbook
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
+import com.example.composecookbook.ui.view.home.BottomNavType
+import com.example.composecookbook.ui.view.home.HomeScreenContent
+import com.example.composecookbook.ui.view.widget.BottomNavigationContent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +28,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    MainAppContent()
                 }
             }
         }
@@ -30,14 +36,20 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MainAppContent() {
+    Column {
+        val homeScreenState = rememberSaveable { mutableStateOf(BottomNavType.HOME) }
+        HomeScreenContent()
+        BottomNavigationContent(
+            homeScreenState = homeScreenState
+        )
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     ComposeCookBookTheme {
-        Greeting("Android")
+        MainAppContent()
     }
 }
