@@ -20,6 +20,7 @@ import com.example.composecookbook.data.DemoDataProvider
 import com.example.composecookbook.data.model.HomeScreenItems
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
 import com.example.composecookbook.ui.view.listview.ListViewActivity
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -75,7 +76,7 @@ fun HomeScreenListView(homeScreenItems: HomeScreenItems) {
 fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
     val intent = when (homeScreenItems) {
         is HomeScreenItems.ListView -> {
-            ListViewActivity.newIntent(context)
+            ListViewActivity.newIntent(context, homeScreenItems.type.uppercase(Locale.getDefault()))
         }
         HomeScreenItems.AdvanceLists -> TODO()
         HomeScreenItems.AndroidViews -> TODO()

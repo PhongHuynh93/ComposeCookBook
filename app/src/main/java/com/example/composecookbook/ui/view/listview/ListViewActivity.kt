@@ -27,17 +27,33 @@ import com.example.composecookbook.R
 import com.example.composecookbook.data.DemoDataProvider
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
 
+enum class ListViewType(string: String) {
+    VERTICAL("Vertical"),
+    HORIZONTAL("Horizontal"),
+    GRID("Grid"),
+    MIX("Vertical+Horizontal")
+}
+
 class ListViewActivity : ComponentActivity() {
 
+    private val listType: String by lazy {
+        intent?.getStringExtra(TYPE) ?: ListViewType.VERTICAL.name
+    }
+
     companion object {
-        fun newIntent(context: Context) = Intent(context, ListViewActivity::class.java)
+        const val TYPE = "type"
+
+        fun newIntent(context: Context, listViewType: String) =
+            Intent(context, ListViewActivity::class.java).apply {
+                putExtra(TYPE, listViewType)
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeCookBookTheme {
-                ListViewContent {
+                ListViewContent(listType = listType) {
                     onBackPressed()
                 }
             }
@@ -46,7 +62,7 @@ class ListViewActivity : ComponentActivity() {
 }
 
 @Composable
-fun ListViewContent(onBack: () -> Unit) {
+fun ListViewContent(listType: String, onBack: () -> Unit) {
     Scaffold(
         topBar = {
             SmallTopAppBar(
@@ -64,44 +80,30 @@ fun ListViewContent(onBack: () -> Unit) {
             )
         },
         content = {
-            VerticalListView()
+            when (listType) {
+                ListViewType.VERTICAL.name -> {
+                    VerticalListView()
+                }
+                ListViewType.HORIZONTAL.name -> {
+                    HorizontalListView()
+                }
+            }
         }
     )
 }
 
+@Preview(name = "Vertical page")
 @Composable
-fun VerticalListView() {
-    val list = remember { DemoDataProvider.itemList }
-
-    LazyColumn {
-        items(
-            items = list,
-            itemContent = { item ->
-                if ((item.id % 3) == 0) {
-                    VerticalListItemSmall(item = item)
-                } else {
-                    VerticalListItem(item = item)
-                }
-                ListItemDivider()
-            }
-        )
+fun VerticalPagePreview() {
+    ComposeCookBookTheme {
+        ListViewContent(ListViewType.VERTICAL.name) {}
     }
 }
 
+@Preview(name = "Horizontal page")
 @Composable
-fun ListItemDivider() {
-    Divider(
-        modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp),
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.08f)
-    )
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
+fun HorizontalPagePreview() {
     ComposeCookBookTheme {
-        ListViewContent {
-
-        }
+        ListViewContent(ListViewType.HORIZONTAL.name) {}
     }
 }

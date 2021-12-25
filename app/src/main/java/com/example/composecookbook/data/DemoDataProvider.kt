@@ -1,6 +1,5 @@
 package com.example.composecookbook.data
 
-import android.content.ClipData
 import com.example.composecookbook.R
 import com.example.composecookbook.data.model.HomeScreenItems
 import com.example.composecookbook.data.model.Item
