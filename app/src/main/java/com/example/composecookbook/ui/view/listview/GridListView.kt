@@ -1,6 +1,5 @@
 package com.example.composecookbook.ui.view.listview
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -16,7 +15,6 @@ import com.example.composecookbook.data.DemoDataProvider
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
 import com.example.composecookbook.ui.view.widget.VerticalGrid
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun GridListView() {
     val list = remember { DemoDataProvider.itemList.take(4) }
