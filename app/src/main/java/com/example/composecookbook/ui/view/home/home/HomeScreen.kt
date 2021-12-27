@@ -20,6 +20,7 @@ import com.example.composecookbook.data.DemoDataProvider
 import com.example.composecookbook.data.model.HomeScreenItems
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
 import com.example.composecookbook.ui.view.dynamic.DynamicUIActivity
+import com.example.composecookbook.ui.view.dynamic.DynamicUiType
 import com.example.composecookbook.ui.view.listview.ListViewActivity
 import java.util.Locale
 
@@ -80,7 +81,10 @@ fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
             ListViewActivity.newIntent(context, homeScreenItems.type.uppercase(Locale.getDefault()))
         }
         HomeScreenItems.Modifiers -> {
-            DynamicUIActivity.newIntent(context)
+            DynamicUIActivity.newIntent(context, DynamicUiType.MODIFIERS.name)
+        }
+        HomeScreenItems.Layouts -> {
+            DynamicUIActivity.newIntent(context, DynamicUiType.LAYOUTS.name)
         }
         HomeScreenItems.AdvanceLists -> TODO()
         HomeScreenItems.AndroidViews -> TODO()
@@ -91,7 +95,6 @@ fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
         HomeScreenItems.ConstraintsLayout -> TODO()
         HomeScreenItems.CustomFling -> TODO()
         HomeScreenItems.Dialogs -> TODO()
-        HomeScreenItems.Layouts -> TODO()
         HomeScreenItems.MotionLayout -> TODO()
         HomeScreenItems.PullRefresh -> TODO()
         HomeScreenItems.TabLayout -> TODO()

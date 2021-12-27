@@ -17,22 +17,42 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composecookbook.R
+import com.example.composecookbook.data.model.HomeScreenItems
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
+import com.example.composecookbook.ui.view.layouts.Layouts
 import com.example.composecookbook.ui.view.listview.ListViewActivity
 
+enum class DynamicUiType {
+    TABS,
+    BOTTOMSHEET,
+    LAYOUTS,
+    CONSTRAINTLAYOUT,
+    CAROUSELL,
+    MODIFIERS,
+    ANDROIDVIEWS,
+    PULLRERESH,
+    MOTIONLAYOUT
+}
+
 class DynamicUIActivity : ComponentActivity() {
+    private val dynamicUiType: String by lazy {
+        intent?.getStringExtra(TYPE) ?: DynamicUiType.TABS.name
+    }
 
     companion object {
+        const val TYPE = "type"
 
-        fun newIntent(context: Context) =
-            Intent(context, DynamicUIActivity::class.java)
+        fun newIntent(context: Context, dynamicUiType: String) =
+            Intent(context, DynamicUIActivity::class.java).apply {
+                putExtra(TYPE, dynamicUiType)
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeCookBookTheme {
-                DynamicUIContent {
+                DynamicUIContent(uiType = dynamicUiType) {
                     onBackPressed()
                 }
             }
@@ -42,12 +62,12 @@ class DynamicUIActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DynamicUIContent(onBack: () -> Unit) {
+fun DynamicUIContent(uiType: String, onBack: () -> Unit) {
     Scaffold(
         topBar = {
             SmallTopAppBar(
                 title = {
-                    Text(text = "Modifiers")
+                    Text(text = uiType)
                 },
                 navigationIcon = {
                     IconButton(onClick = { onBack() }) {
@@ -60,7 +80,16 @@ fun DynamicUIContent(onBack: () -> Unit) {
             )
         },
         content = {
-            HowToModifiers()
+            // We setup a base activity and we will change content depending upon ui type so
+            // we don't have to create Activity for every feature showcase
+            when (uiType) {
+                DynamicUiType.MODIFIERS.name -> {
+                    HowToModifiers()
+                }
+                DynamicUiType.LAYOUTS.name -> {
+                    Layouts()
+                }
+            }
         }
     )
 }
