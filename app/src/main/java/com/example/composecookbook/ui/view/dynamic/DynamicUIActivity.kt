@@ -17,10 +17,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.composecookbook.R
-import com.example.composecookbook.data.model.HomeScreenItems
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
+import com.example.composecookbook.ui.view.constraintlayout.ConstraintLayoutsDemo
 import com.example.composecookbook.ui.view.layouts.Layouts
-import com.example.composecookbook.ui.view.listview.ListViewActivity
 
 enum class DynamicUiType {
     TABS,
@@ -88,6 +87,9 @@ fun DynamicUIContent(uiType: String, onBack: () -> Unit) {
                 }
                 DynamicUiType.LAYOUTS.name -> {
                     Layouts()
+                }
+                DynamicUiType.CONSTRAINTLAYOUT.name -> {
+                    ConstraintLayoutsDemo()
                 }
             }
         }

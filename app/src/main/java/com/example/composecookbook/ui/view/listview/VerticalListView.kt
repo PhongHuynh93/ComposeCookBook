@@ -19,8 +19,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -91,7 +93,7 @@ fun VerticalListItemSmall(
     item: Item,
     modifier: Modifier = Modifier
 ) {
-    val isFavorite = remember { mutableStateOf(false) }
+    var isFavorite by remember { mutableStateOf(false) }
     Row(
         modifier = modifier
             .padding(16.dp)
@@ -120,12 +122,12 @@ fun VerticalListItemSmall(
             )
         }
         IconToggleButton(
-            checked = isFavorite.value,
+            checked = isFavorite,
             onCheckedChange = {
-                isFavorite.value = it
+                isFavorite = it
             }
         ) {
-            if (isFavorite.value) {
+            if (isFavorite) {
                 Icon(
                     imageVector = Icons.Filled.Favorite,
                     contentDescription = null

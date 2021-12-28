@@ -86,13 +86,15 @@ fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
         HomeScreenItems.Layouts -> {
             DynamicUIActivity.newIntent(context, DynamicUiType.LAYOUTS.name)
         }
+        HomeScreenItems.ConstraintsLayout -> {
+            DynamicUIActivity.newIntent(context, DynamicUiType.CONSTRAINTLAYOUT.name)
+        }
         HomeScreenItems.AdvanceLists -> TODO()
         HomeScreenItems.AndroidViews -> TODO()
         HomeScreenItems.BottomAppBar -> TODO()
         HomeScreenItems.BottomSheets -> TODO()
         HomeScreenItems.Carousel -> TODO()
         HomeScreenItems.CollapsingAppBar -> TODO()
-        HomeScreenItems.ConstraintsLayout -> TODO()
         HomeScreenItems.CustomFling -> TODO()
         HomeScreenItems.Dialogs -> TODO()
         HomeScreenItems.MotionLayout -> TODO()
