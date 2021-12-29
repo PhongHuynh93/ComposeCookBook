@@ -20,6 +20,7 @@ import com.example.composecookbook.R
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
 import com.example.composecookbook.ui.view.constraintlayout.ConstraintLayoutsDemo
 import com.example.composecookbook.ui.view.layouts.Layouts
+import com.example.composecookbook.ui.view.motionlayout.MotionLayoutDemo
 
 enum class DynamicUiType {
     TABS,
@@ -90,6 +91,9 @@ fun DynamicUIContent(uiType: String, onBack: () -> Unit) {
                 }
                 DynamicUiType.CONSTRAINTLAYOUT.name -> {
                     ConstraintLayoutsDemo()
+                }
+                DynamicUiType.MOTIONLAYOUT.name -> {
+                    MotionLayoutDemo()
                 }
             }
         }

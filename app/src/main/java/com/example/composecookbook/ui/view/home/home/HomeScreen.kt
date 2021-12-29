@@ -89,6 +89,9 @@ fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
         HomeScreenItems.ConstraintsLayout -> {
             DynamicUIActivity.newIntent(context, DynamicUiType.CONSTRAINTLAYOUT.name)
         }
+        HomeScreenItems.MotionLayout -> {
+            DynamicUIActivity.newIntent(context, DynamicUiType.MOTIONLAYOUT.name)
+        }
         HomeScreenItems.AdvanceLists -> TODO()
         HomeScreenItems.AndroidViews -> TODO()
         HomeScreenItems.BottomAppBar -> TODO()
@@ -97,7 +100,6 @@ fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
         HomeScreenItems.CollapsingAppBar -> TODO()
         HomeScreenItems.CustomFling -> TODO()
         HomeScreenItems.Dialogs -> TODO()
-        HomeScreenItems.MotionLayout -> TODO()
         HomeScreenItems.PullRefresh -> TODO()
         HomeScreenItems.TabLayout -> TODO()
     }
