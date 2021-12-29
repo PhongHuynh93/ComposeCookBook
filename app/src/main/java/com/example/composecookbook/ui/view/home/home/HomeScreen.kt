@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.example.composecookbook.data.DemoDataProvider
 import com.example.composecookbook.data.model.HomeScreenItems
 import com.example.composecookbook.ui.theme.ComposeCookBookTheme
+import com.example.composecookbook.ui.view.advanceList.AdvanceListsActivity
 import com.example.composecookbook.ui.view.dynamic.DynamicUIActivity
 import com.example.composecookbook.ui.view.dynamic.DynamicUiType
 import com.example.composecookbook.ui.view.listview.ListViewActivity
@@ -92,7 +93,9 @@ fun homeItemClicked(context: Context, homeScreenItems: HomeScreenItems) {
         HomeScreenItems.MotionLayout -> {
             DynamicUIActivity.newIntent(context, DynamicUiType.MOTIONLAYOUT.name)
         }
-        HomeScreenItems.AdvanceLists -> TODO()
+        HomeScreenItems.AdvanceLists -> {
+            AdvanceListsActivity.newIntent(context)
+        }
         HomeScreenItems.AndroidViews -> TODO()
         HomeScreenItems.BottomAppBar -> TODO()
         HomeScreenItems.BottomSheets -> TODO()

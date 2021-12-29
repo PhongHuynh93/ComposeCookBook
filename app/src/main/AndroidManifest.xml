@@ -18,9 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.view.listview.ListViewActivity" />
         <activity android:name=".ui.view.dynamic.DynamicUIActivity" />
+        <activity android:name=".ui.view.advanceList.AdvanceListsActivity" />
     </application>
 
 </manifest>
